@@ -96,7 +96,7 @@ struct PostView: View {
                 }
             }
         }
-        .padding([.bottom, .top], DesignSystem.Margin.small)
+        .padding([.bottom, .top, .trailing], DesignSystem.Margin.small)
     }
 }
 

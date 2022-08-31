@@ -19,11 +19,11 @@ final class AppRouter {
         let viewModel = HomeViewModel(router: self,
                                       currentUserId: currentUserId,
                                       service: service)
-        return HomeView(viewModel: viewModel)
+        return AppView(viewModel: viewModel)
     }
     
-    func showUserScreen(userModel: UserModel) -> some View {
-        let viewModel = UserViewModel(service: service, userModel: userModel)
+    func showUserScreen(currentUserId: Int) -> some View {
+        let viewModel = UserViewModel(router: self, currentUserId: currentUserId, service: service)
         return UserView(viewModel: viewModel)
     }
 }

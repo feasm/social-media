@@ -53,7 +53,7 @@ final class SocialMediaServiceMock: SocialMediaService {
     
     func addPost(post: PostModel) -> AnyPublisher<PostModel, NetworkError> {
         if posts.filter({ $0.id == post.userInfo?.id && post.creationDate == $0.creationDate }).count < 5 {
-            posts.append(post)
+            posts.insert(post, at: 0)
             return Just(post)
                     .setFailureType(to: NetworkError.self)
                     .eraseToAnyPublisher()

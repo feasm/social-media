@@ -8,32 +8,40 @@
 import SwiftUI
 import Combine
 
-struct HomeView: View {
+struct AppView: View {
     @ObservedObject var viewModel: HomeViewModel
     
     var body: some View {
         NavigationView {
-            List {
-                Section(header: headerView) {
-                    ForEach(viewModel.posts.indices, id: \.self) { index in
-                        NavigationLink(destination: viewModel.showUserScreen(index: index)) {
-                            PostView(viewData: viewModel.posts[index],
-                                     onShareEvent: { viewModel.repostContent(index: index) },
-                                     onQuoteEvent: { viewModel.quoteContent(index: index) })
-                        }
+            HomeView(viewModel: viewModel)
+                .navigationTitle("Home")
+        }
+    }
+}
+
+struct HomeView: View {
+    @ObservedObject var viewModel: HomeViewModel
+    
+    var body: some View {
+        List {
+            Section(header: headerView) {
+                ForEach(viewModel.posts.indices, id: \.self) { index in
+                    NavigationLink(destination: viewModel.showUserScreen(index: index)) {
+                        PostView(viewData: viewModel.posts[index],
+                                 onShareEvent: { viewModel.repostContent(index: index) },
+                                 onQuoteEvent: { viewModel.quoteContent(index: index) })
                     }
                 }
             }
-            .buttonStyle(.borderless)
-            .listStyle(.plain)
-            .onAppear {
-                viewModel.getPosts()
-            }
-            .navigationTitle("Home")
-            .alert(viewModel.errorMessage, isPresented: $viewModel.isShowingAlert) {
-                Button("Ok", role: .cancel) {
-                    viewModel.clearStates()
-                }
+        }
+        .buttonStyle(.borderless)
+        .listStyle(.plain)
+        .onAppear {
+            viewModel.getPosts()
+        }
+        .alert(viewModel.errorMessage, isPresented: $viewModel.isShowingAlert) {
+            Button("Ok", role: .cancel) {
+                viewModel.clearStates()
             }
         }
     }
@@ -43,7 +51,7 @@ struct HomeView: View {
                      numberOfLettersLeft: $viewModel.numberOfLettersLeft,
                      quotePost: $viewModel.quotePost,
                      isFocused: $viewModel.isFocused,
-                     username: viewModel.currentUser?.username ?? "",
+                     username: viewModel.currentUser.username,
                      onTweetButtonPressed: { viewModel.postNewContent() })
     }
 }

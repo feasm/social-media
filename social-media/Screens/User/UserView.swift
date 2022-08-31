@@ -9,32 +9,16 @@ import SwiftUI
 import Combine
 
 struct UserView: View {
-    let imageSize: CGFloat = 120
+    let imageSize: CGFloat = 80
     @ObservedObject var viewModel: UserViewModel
     
     var body: some View {
-        VStack {
-            List {
-                userInfo
-                
-                Section(header: listHeader) {
-                    NewTweetView(newPost: $viewModel.newPost,
-                                 numberOfLettersLeft: $viewModel.numberOfLettersLeft,
-                                 quotePost: $viewModel.quotePost,
-                                 isFocused: $viewModel.isFocused,
-                                 username: viewModel.user.username,
-                                 onTweetButtonPressed: {  })
-                    
-                    ForEach(viewModel.posts) { postViewData in
-                        PostView(viewData: postViewData)
-                    }
-                }
-            }
-            .listStyle(.plain)
-            .onAppear {
-                viewModel.getPosts()
-            }
+        VStack(spacing: DesignSystem.Spacing.small) {
+            userInfo
+            
+            HomeView(viewModel: viewModel)
         }
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     var userInfo: some View {
@@ -44,22 +28,22 @@ struct UserView: View {
                 
                 Image(systemName: "person.circle")
                     .frame(width: imageSize, height: imageSize)
-                    .font(.system(size: 80))
+                    .font(.system(size: imageSize))
                 
                 Spacer()
             }
             
-            headerLineView(title: "Username:", value: viewModel.user.username)
+            headerLineView(title: "Username:", value: viewModel.currentUser.username)
             
-            headerLineView(title: "Date joined:", value: viewModel.user.creationDate)
+            headerLineView(title: "Date joined:", value: viewModel.currentUser.creationDate)
             
-            headerLineView(title: "Number of posts:", value: viewModel.user.numberOfPosts)
+            headerLineView(title: "Number of posts:", value: viewModel.currentUser.numberOfPosts)
             
-            headerLineView(title: "Number of reposts:", value: viewModel.user.numberOfReposts)
+            headerLineView(title: "Number of reposts:", value: viewModel.currentUser.numberOfReposts)
             
-            headerLineView(title: "Number of quotes:", value: viewModel.user.numberOfQuotes)
+            headerLineView(title: "Number of quotes:", value: viewModel.currentUser.numberOfQuotes)
         }
-        .padding(DesignSystem.Margin.big)
+        .padding([.leading, .trailing], DesignSystem.Margin.big)
     }
     
     var listHeader: some View {
@@ -80,10 +64,6 @@ struct UserView: View {
 
 struct UserView_Previews: PreviewProvider {
     static var previews: some View {
-        UserView(viewModel:
-                    UserViewModel(userModel:
-                                    UserModel(id: 1,
-                                              username: "johnz",
-                                              creationDate: "March 25, 2020")))
+        AppRouter(service: SocialMediaServiceMock()).showUserScreen(currentUserId: 1)
     }
 }

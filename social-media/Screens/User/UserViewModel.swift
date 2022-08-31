@@ -8,9 +8,10 @@
 import SwiftUI
 import Combine
 
-final class UserViewModel: ObservableObject {
+final class UserViewModel1: ObservableObject {
     private let service: SocialMediaService
     private let userModel: UserModel
+    let homeViewModel: HomeViewModel
     
     @Published var newPost: String = "" {
         didSet {
@@ -34,9 +35,10 @@ final class UserViewModel: ObservableObject {
     private var postModels = [PostModel]()
     private var cancellables = [AnyCancellable]()
     
-    init(service: SocialMediaService = SocialMediaServiceMock(), userModel: UserModel) {
+    init(service: SocialMediaService = SocialMediaServiceMock(), userModel: UserModel, homeViewModel: HomeViewModel) {
         self.service = service
         self.userModel = userModel
+        self.homeViewModel = homeViewModel
     }
     
     func getPosts() {

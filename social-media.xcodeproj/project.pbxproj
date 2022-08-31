@@ -148,7 +148,6 @@
 		AF2EA5FA28BB082C00B46B1A /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				AF2EA61F28BDCE4D00B46B1A /* Model */,
 				AF2EA5FC28BB085C00B46B1A /* User */,
 				AF2EA5FB28BB082F00B46B1A /* Home */,
 			);
@@ -206,6 +205,7 @@
 		AF2EA61328BD815600B46B1A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AF2EA62028BDCE5400B46B1A /* UserViewData.swift */,
 				AF2EA61628BD817C00B46B1A /* PostViewData.swift */,
 			);
 			path = Model;
@@ -233,14 +233,6 @@
 				AF2EA61B28BDBF5A00B46B1A /* AppRouter.swift */,
 			);
 			path = Router;
-			sourceTree = "<group>";
-		};
-		AF2EA61F28BDCE4D00B46B1A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				AF2EA62028BDCE5400B46B1A /* UserViewData.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		AF65A68C289C24C500F7E7EC = {
