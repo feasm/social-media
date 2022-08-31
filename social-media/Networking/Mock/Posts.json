@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "type": "post",
+        "userInfo": {
+            "id": 4,
+            "username": "char_lotte"
+        },
+        "repostInfo": null,
+        "quoteInfo": null,
+        "text": "Going out with people that don't know how to go home is scary",
+        "creationDate": "August 30, 2022"
+    },
+    {
+        "id": 2,
+        "type": "quote",
+        "userInfo": {
+            "id": 1,
+            "username": "liamzz"
+        },
+        "repostInfo": null,
+        "quoteInfo": {
+            "userId": 4,
+            "username": "char_lotte",
+            "text": "Going out with people that don't know how to go home is scary"
+        },
+        "text": "Do you need a hangout buddy?",
+        "creationDate": "August 30, 2022"
+    },
+    {
+        "id": 3,
+        "type": "quote",
+        "userInfo": {
+            "id": 3,
+            "username": "littleemma2000"
+        },
+        "repostInfo": null,
+        "quoteInfo": {
+            "userId": 4,
+            "username": "char_lotte",
+            "text": "Going out with people that don't know how to go home is scary"
+        },
+        "text": "If you know how to go home, that shouldn't be your problem.",
+        "creationDate": "August 30, 2022"
+    },
+    {
+        "id": 4,
+        "type": "repost",
+        "userInfo": {
+            "id": 2,
+            "username": "noahbennet"
+        },
+        "repostInfo": {
+            "userId": 4,
+            "username": "char_lotte",
+            "text": "Going out with people that don't know how to go home is scary"
+        },
+        "quoteInfo": null,
+        "text": null,
+        "creationDate": "August 30, 2022"
+    }
+]
